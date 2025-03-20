@@ -1,0 +1,4 @@
+package dominio
+
+class SeguroAuto {
+}
