@@ -1,4 +1,0 @@
-package dominio
-
-class SeguroHogar {
-}

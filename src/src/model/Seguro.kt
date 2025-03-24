@@ -1,8 +1,8 @@
-package dominio
+package model
 
 abstract class Seguro(val numPoliza: Int,
                       val dniTitular: String,
-                      private val importe: Double) {
+                      protected var importe: Double) {
 
     abstract fun calcularImporteAnioSiguiente(interes: Double): Double
 
