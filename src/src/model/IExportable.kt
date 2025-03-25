@@ -2,6 +2,6 @@ package model
 
 interface IExportable {
 
-    fun serializar(separador: String = ";")
+    fun serializar(separador: String = ";"): String
 
 }
