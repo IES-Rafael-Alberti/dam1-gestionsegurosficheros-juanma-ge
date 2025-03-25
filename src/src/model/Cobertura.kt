@@ -8,6 +8,16 @@ enum class Cobertura(val cobertura: String) {
     FRANQUICIA300("Fraquicia 300"),
     FRANQUICIA400("Franquicia 400"),
     FRANQUICIA500("Franquicia 500"),
-    TODO_RIESGO("Todo riesgo")
+    TODO_RIESGO("Todo riesgo");
+
+    companion object{
+        fun getCobertura(valor: String): Cobertura {
+            return try {
+                valueOf(valor)
+            }catch (e: IllegalArgumentException){
+                TERCEROS
+            }
+        }
+    }
 
 }

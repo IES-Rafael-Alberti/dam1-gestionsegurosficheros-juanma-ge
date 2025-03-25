@@ -6,8 +6,14 @@ enum class Perfil(val id: String) {
     GESTION("gestion"),
     CONSULTA("consulta");
 
-    fun getPerfil(valor: String): Cobertura{
-
+    companion object{
+        fun getPerfil(valor: String): Perfil{
+            return try {
+                valueOf(valor)
+            } catch (e: IllegalArgumentException){
+                CONSULTA
+            }
+        }
     }
 
 }
