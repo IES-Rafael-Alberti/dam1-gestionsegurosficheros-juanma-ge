@@ -1,23 +1,63 @@
 package model
 
-class SeguroHogar(numPoliza: Int,
-                  dniTitular: String,
-                  importe: Double,
-                  val metrosCuadrados: Double,
-                  val valorContenido: Double,
-                  val direccion: String
-): Seguro(numPoliza, dniTitular, importe) {
+class SeguroHogar: Seguro {
 
-    override fun calcularImporteAnioSiguiente(interes: Double): Double {
-        return importe * (1 + interes / 100)
+    private val metrosCuadrados: Int
+    private val valorContenido: Int
+    private val direccion: String
+
+    constructor(
+        dniTitular: String,
+        importe: Double,
+        metrosCuadrados: Int,
+        valorContenido: Int,
+        direccion: String
+    ) : super(++numPolizasHogar, dniTitular, importe) {
+        this.metrosCuadrados = metrosCuadrados
+        this.valorContenido = valorContenido
+        this.direccion = direccion
     }
 
-    override fun serializar(): String {
-        return "$numPoliza;$dniTitular;$importe;$metrosCuadrados;$valorContenido;$direccion;${tipoSeguro()}"
+    constructor(
+        numPoliza: Int,
+        dniTitular: String,
+        importe: Double,
+        metrosCuadrados: Int,
+        valorContenido: Int,
+        direccion: String
+    ) : super(numPoliza, dniTitular, importe) {
+        this.metrosCuadrados = metrosCuadrados
+        this.valorContenido = valorContenido
+        this.direccion = direccion
+    }
+
+    companion object{
+        private var numPolizasHogar: Int =  10000
+
+        fun crearSeguro(datos: List<String>): SeguroHogar{
+            return SeguroHogar(
+                numPoliza = datos[0].toInt(),
+                dniTitular = datos[1],
+                importe = datos[2].toDouble(),
+                metrosCuadrados = datos[3].toInt(),
+                valorContenido = datos[4].toInt(),
+                direccion = datos[5]
+            )
+        }
+    }
+
+    override fun calcularImporteAnioSiguiente(interes: Double): Double {
+        return importe
+    }
+
+    override fun serializar(separador: String): String {
+        return "${super.serializar(separador)};$metrosCuadrados;$valorContenido;$direccion;${tipoSeguro()}"
     }
 
     override fun tipoSeguro(): String {
-        return "Seguro de hogar."
+        return "SeguroHogar(${super.toString().removePrefix("Seguro").removeSuffix(")")}, " +
+                "metrosCuadrados=$metrosCuadrados, valorContenido=$valorContenido, " +
+                "direccion='$direccion)"
     }
 
 }
