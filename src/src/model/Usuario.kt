@@ -23,6 +23,16 @@ class Usuario(
         clave = nuevaCavleEncriptada
     }
 
+    override fun hashCode(): Int {
+        return nombre.hashCode()
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Usuario) return false
+        return nombre == other.nombre
+    }
+
     override fun serializar(separador: String): String{
         return "$nombre; $clave; $perfil"
     }

@@ -27,7 +27,7 @@ class SeguroAuto: Seguro{
         this.numPartes = numPartes
     }
 
-    constructor(numPoliza: Int,
+    private constructor(numPoliza: Int,
                 dniTitular: String,
                 importe: Double,
                 descripcion: String,
@@ -46,7 +46,8 @@ class SeguroAuto: Seguro{
     }
 
     companion object {
-        private var numPolizasAuto: Int = 40000
+        private var numPolizasAuto: Int = 400000
+        private val PORCENTAJE_INCREMENTO_PARTES = 2
 
         fun crearSeguro(datos: List<String>): SeguroAuto{
             return SeguroAuto(
@@ -61,8 +62,6 @@ class SeguroAuto: Seguro{
                 numPartes = datos[8].toInt()
             )
         }
-
-        private val PORCENTAJE_INCREMENTO_PARTES = 2
     }
 
     override fun serializar(separador: String): String {

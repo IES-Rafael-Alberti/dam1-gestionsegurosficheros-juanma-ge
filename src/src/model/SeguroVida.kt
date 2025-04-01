@@ -47,6 +47,10 @@ class SeguroVida: Seguro {
         }
     }
 
+    override fun tipoSeguro(): String {
+        return "Seguro de vida."
+    }
+
     override fun calcularImporteAnioSiguiente(interes: Double): Double {
         return importe
     }
