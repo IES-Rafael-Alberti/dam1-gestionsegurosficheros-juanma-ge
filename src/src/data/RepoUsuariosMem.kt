@@ -3,9 +3,9 @@ package data
 import model.Perfil
 import model.Usuario
 
-class RepoUsuariosMem: IRepoUsuarios {
+open class RepoUsuariosMem: IRepoUsuarios {
 
-    private val usuarios = mutableListOf<Usuario>()
+    protected val usuarios = mutableListOf<Usuario>()
 
     override fun agregar(usuario: Usuario): Boolean {
         if (buscar(usuario.nombre) != null) return false

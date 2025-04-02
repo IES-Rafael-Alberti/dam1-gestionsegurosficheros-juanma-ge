@@ -3,7 +3,7 @@ package data
 import model.Seguro
 import model.Usuario
 
-class RepoSegurosMem: IRepoSeguros{
+open class RepoSegurosMem: IRepoSeguros{
     protected val seguros = mutableListOf<Seguro>()
 
     override fun agregar(seguro: Seguro): Boolean {

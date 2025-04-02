@@ -32,7 +32,7 @@ class SeguroHogar: Seguro {
     }
 
     companion object{
-        private var numPolizasHogar: Int =  10000
+        var numPolizasHogar: Int =  10000
 
         fun crearSeguro(datos: List<String>): SeguroHogar{
             return SeguroHogar(
