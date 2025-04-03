@@ -11,7 +11,6 @@ class RepoUsuariosFich(
 ): RepoUsuariosMem(), ICargarUsuariosIniciales {
 
     override fun agregar(usuario: Usuario): Boolean {
-        if (buscar(usuario.nombre) != null) return false
         return if (fich.agregarLinea(rutaArchivo, usuario.serializar())) {
             super.agregar(usuario)
         } else {
