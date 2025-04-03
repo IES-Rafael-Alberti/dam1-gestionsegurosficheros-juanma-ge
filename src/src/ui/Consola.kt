@@ -105,7 +105,7 @@ class Consola(): IEntradaSalida {
         if (respuesta == "s" || respuesta == "n"){
             return true
         }else{
-            mostrarError("Error al leer el mensaje. ")
+            mostrarError("Error al leer el mensaje.")
             return false
         }
     }
