@@ -41,9 +41,9 @@ class ControlAcceso(
      *
      * @return Un par (nombreUsuario, perfil) si el acceso fue exitoso, o `null` si el usuario cancela el acceso.
      */
-    fun autenticar() {
-        if (!verificarFicheroUsuarios()) return null
-
+    fun autenticar(): Unit? {
+        if (!verificarFicheroUsuarios()){return null}
+        return iniciarSesion()
     }
 
     /**
@@ -57,8 +57,15 @@ class ControlAcceso(
      * @return `true` si el proceso puede continuar (hay al menos un usuario),
      *         `false` si el usuario cancela la creación inicial o ocurre un error.
      */
-    private fun verificarFicheroUsuarios() {
-        TODO("Implementar este método")
+    private fun verificarFicheroUsuarios(): Boolean {
+        if (ficheros.existeFichero(rutaArchivo) || ficheros.leerArchivo(rutaArchivo).isEmpty()){
+            ui.mostrarError("No se ha encontrado ningún usuario registrado.")
+            if (ui.preguntar("¿Desea crear un usuario con perfil ADMIN?")){
+                iniciarSesion()
+            }
+            return false
+        }
+        return true
     }
 
     /**
@@ -70,8 +77,16 @@ class ControlAcceso(
      * @return Un par (nombreUsuario, perfil) si las credenciales son correctas,
      *         o `null` si el usuario decide no continuar.
      */
-    private fun iniciarSesion() {
-        TODO("Implementar este método")
+    private fun iniciarSesion(): Unit? {
+        while (true){
+            val nombre = ui.pedirInfo("Ingrese su nombre de usuario (o 'salir' para cancelar): ")
+            val clave = ui.pedirInfoOculta("Dime tu contraseña: ")
+
+            val perfil = gestorUsuarios.iniciarSesion(nombre, clave)
+            if (perfil != null){
+
+            }
+        }
     }
 
 }
